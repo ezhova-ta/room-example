@@ -17,6 +17,5 @@ data class Song(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo val name: String,
     @ColumnInfo val durationInSeconds: Long,
-    @ColumnInfo var albumId: Long,
-    @Ignore val cover: Bitmap
+    @ColumnInfo var albumId: Long
 )

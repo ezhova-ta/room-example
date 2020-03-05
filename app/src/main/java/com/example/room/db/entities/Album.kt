@@ -8,7 +8,7 @@ import com.example.room.db.entities.Singer
 
 @Entity
 data class Album(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
     @ColumnInfo val name: String,
     @ColumnInfo val year: Int,
     @ColumnInfo val genre: String,

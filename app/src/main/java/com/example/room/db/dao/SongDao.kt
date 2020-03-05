@@ -9,10 +9,10 @@ interface SongDao {
     fun getAll(): List<Song>
 
     @Query("select * from Song where id = :id")
-    fun getById(id: Long)
+    fun getById(id: Long): Song
 
     @Query("select * from Song where name = :name")
-    fun getByName(name: String)
+    fun getByName(name: String): Song
 
     @Query("select * from Song where durationInSeconds > 60")
     fun getSongsLongerMinute(): List<Song>

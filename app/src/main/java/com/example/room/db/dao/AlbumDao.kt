@@ -7,14 +7,17 @@ import com.example.room.db.entities.BaseAlbumInfo
 
 @Dao
 interface AlbumDao {
+    @Query("delete from Album")
+    fun deleteAll()
+
     @Query("select * from Album")
     fun getAll(): List<Album>
 
     @Query("select * from Album where id = :id")
-    fun getById(id: Long)
+    fun getById(id: Long): Album
 
     @Query("select * from Album where name = :name")
-    fun getByName(name: String)
+    fun getByName(name: String): Album
 
     @Query("select name, genre from Album")
     fun getBaseAlbumsInfo(): List<BaseAlbumInfo>
