@@ -2,6 +2,7 @@ package com.example.room.db.dao
 
 import androidx.room.*
 import com.example.room.db.entities.Song
+import com.example.room.db.entities.SongWithAlbumName
 
 @Dao
 interface SongDao {
@@ -16,6 +17,9 @@ interface SongDao {
 
     @Query("select * from Song where durationInSeconds > 60")
     fun getSongsLongerMinute(): List<Song>
+
+    @Query("select * from Song")
+    fun getSongWithAlbumNameList(): List<SongWithAlbumName>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(song: Song): Long

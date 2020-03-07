@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.room.db.entities.Album
 import com.example.room.db.entities.Singer
+import com.example.room.db.entities.Song
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,8 +15,9 @@ class MainActivity : AppCompatActivity() {
 
         val db = App.instance.db
         val albumDao = db.albumDao()
+        val songDao = db.songDao()
 
-        val album1 = Album(
+        val album = Album(
             name = "Test album",
             year = 2020,
             genre = "Test genre",
@@ -23,20 +25,15 @@ class MainActivity : AppCompatActivity() {
             singer = Singer("Singer first name", "Singer surname")
         )
 
-        val album2 = Album(
-            name = "Test album 2",
-            year = 2019,
-            genre = "Test genre 2",
-            rating = 9,
-            singer = Singer("Singer2 first name", "Singer 2 surname")
-        )
+        val albumId = albumDao.insert(album)
 
-        albumDao.insert(album1)
-        albumDao.insert(album2)
+        val song1 = Song(name = "Song1", durationInSeconds = 123L, albumId = albumId)
+        val song2 = Song(name = "Song2", durationInSeconds = 220L, albumId = albumId)
 
-//        albumDao.deleteAll()
+        songDao.insertAll(song1, song2)
+        val songs =  songDao.getSongWithAlbumNameList()
+//        val albumWithSongsList = albumDao.getAlbumWithSongsList()
 
-        val albums = albumDao.getAll()
-        Log.d("gfgfgf", "$albums")
+        Log.d("gfgfgf", "$songs")
     }
 }

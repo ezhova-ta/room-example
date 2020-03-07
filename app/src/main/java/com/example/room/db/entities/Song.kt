@@ -14,7 +14,7 @@ import androidx.room.*
     )]
 )
 data class Song(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
     @ColumnInfo val name: String,
     @ColumnInfo val durationInSeconds: Long,
     @ColumnInfo var albumId: Long

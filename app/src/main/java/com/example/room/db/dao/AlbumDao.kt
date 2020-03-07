@@ -22,14 +22,15 @@ interface AlbumDao {
     @Query("select name, genre from Album")
     fun getBaseAlbumsInfo(): List<BaseAlbumInfo>
 
+    @Transaction
     @Query("select * from Album")
     fun getAlbumWithSongsList(): List<AlbumWithSongs>
 
     @Insert
-    fun insert(album: Album)
+    fun insert(album: Album): Long
 
     @Insert
-    fun insertAll(vararg albums: Album)
+    fun insertAll(vararg albums: Album): List<Long>
 
     @Update
     fun update(album: Album)
