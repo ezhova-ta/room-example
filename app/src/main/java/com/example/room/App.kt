@@ -34,6 +34,7 @@ class App : Application() {
             DATABASE_NAME
         )
 
+        // Если миграций несколько, то их можно перечислить через запятую
         databaseBuilder.addMigrations(MIGRATION_1_2).build()
 
         db = databaseBuilder

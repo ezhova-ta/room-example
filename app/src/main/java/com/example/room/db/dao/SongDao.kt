@@ -18,6 +18,7 @@ interface SongDao {
     @Query("select * from Song where durationInSeconds > 60")
     fun getSongsLongerMinute(): List<Song>
 
+    @Transaction
     @Query("select * from Song")
     fun getSongWithAlbumNameList(): List<SongWithAlbumName>
 
