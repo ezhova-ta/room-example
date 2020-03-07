@@ -13,5 +13,6 @@ data class Album(
     @ColumnInfo val year: Int,
     @ColumnInfo val genre: String,
     @ColumnInfo val rating: Int,
-    @Embedded val singer: Singer
+    @Embedded val singer: Singer,
+    @ColumnInfo val url: String?
 )
