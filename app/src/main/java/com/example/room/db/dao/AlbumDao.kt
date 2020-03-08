@@ -7,32 +7,32 @@ import com.example.room.db.entities.BaseAlbumInfo
 
 @Dao
 interface AlbumDao {
-    @Query("delete from Album")
+    @Query("DELETE FROM Album")
     fun deleteAll()
 
-    @Query("select * from Album")
+    @Query("SELECT * FROM Album")
     fun getAll(): List<Album>
 
-    @Query("select * from Album where id = :id")
+    @Query("SELECT * FROM Album WHERE id = :id")
     fun getById(id: Long): Album
 
-    @Query("select * from Album where name = :name")
+    @Query("SELECT * FROM Album WHERE name = :name")
     fun getByName(name: String): Album
 
-    @Query("select name, genre from Album")
+    @Query("SELECT name, genre FROM Album")
     fun getBaseAlbumsInfo(): List<BaseAlbumInfo>
 
     @Transaction
-    @Query("select * from Album")
+    @Query("SELECT * FROM Album")
     fun getAlbumWithSongsList(): List<AlbumWithSongs>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(album: Album): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg albums: Album): List<Long>
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     fun update(album: Album)
 
     @Delete

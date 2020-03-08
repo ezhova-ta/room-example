@@ -1,6 +1,5 @@
 package com.example.room.db.entities
 
-import android.graphics.Bitmap
 import androidx.room.*
 
 @Entity(

@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
 //        val song2 = createSong2(album1Id)
 //        songDao.insertAll(song1, song2)
 
-//        val songWithAlbumNameList =  songDao.getSongWithAlbumNameList()
-        val albumWithSongsList = albumDao.getAlbumWithSongsList()
+        val songWithAlbumNameList =  songDao.getSongWithAlbumNameList()
+//        val albumWithSongsList = albumDao.getAlbumWithSongsList()
 
-        Log.d("gfgfgf", "$albumWithSongsList")
+        Log.d("gfgfgf", "$songWithAlbumNameList")
     }
 
     private fun createAlbum1(): Album {

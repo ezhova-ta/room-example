@@ -6,32 +6,32 @@ import com.example.room.db.entities.SongWithAlbumName
 
 @Dao
 interface SongDao {
-    @Query("select * from Song")
+    @Query("SELECT * FROM Song")
     fun getAll(): List<Song>
 
-    @Query("select * from Song where id = :id")
+    @Query("SELECT * FROM Song WHERE id = :id")
     fun getById(id: Long): Song
 
-    @Query("select * from Song where name = :name")
+    @Query("SELECT * FROM Song WHERE name = :name")
     fun getByName(name: String): Song
 
-    @Query("select * from Song where durationInSeconds > 60")
+    @Query("SELECT * FROM Song WHERE durationInSeconds > 60")
     fun getSongsLongerMinute(): List<Song>
 
     @Transaction
-    @Query("select * from Song")
+    @Query("SELECT * FROM Song")
     fun getSongWithAlbumNameList(): List<SongWithAlbumName>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(song: Song): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg song: Song): List<Long>
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     fun update(song: Song)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     fun updateAll(songs: List<Song>): Int
 
     @Delete
