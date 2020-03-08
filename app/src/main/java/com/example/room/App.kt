@@ -2,6 +2,7 @@ package com.example.room
 
 import android.app.Application
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.room.db.DB
@@ -26,17 +27,24 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        assignValueToDbInstance()
+    }
 
-        val databaseBuilder = Room.databaseBuilder(
+    private fun assignValueToDbInstance() {
+        val dbBuilder = getDbBuilder()
+
+        dbBuilder.addMigrations(MIGRATION_1_2)
+
+        db = dbBuilder
+            .allowMainThreadQueries()
+            .build()
+    }
+
+    private fun getDbBuilder(): RoomDatabase.Builder<DB> {
+        return Room.databaseBuilder(
             applicationContext,
             DB::class.java,
             DATABASE_NAME
         )
-
-        databaseBuilder.addMigrations(MIGRATION_1_2).build()
-
-        db = databaseBuilder
-                .allowMainThreadQueries()
-                .build()
     }
 }

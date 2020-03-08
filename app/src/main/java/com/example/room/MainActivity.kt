@@ -50,14 +50,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createSong1(albumId: Long): Song {
-        return Song(name = "Song1", durationInSeconds = 123L, albumId = albumId)
+        return Song(
+            name = "Song1",
+            durationInSeconds = 123L,
+            albumId = albumId
+        )
     }
 
     private fun createSong2(albumId: Long): Song {
-        return Song(name = "Song2", durationInSeconds = 220L, albumId = albumId)
+        return Song(
+            name = "Song2",
+            durationInSeconds = 220L,
+            albumId = albumId
+        )
     }
 
     private fun createSong3(albumId: Long): Song {
-        return Song(name = "Song3", durationInSeconds = 310L, albumId = albumId)
+        return Song(
+            name = "Song3",
+            durationInSeconds = 310L,
+            albumId = albumId
+        )
     }
 }
