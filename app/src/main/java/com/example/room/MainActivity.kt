@@ -3,6 +3,7 @@ package com.example.room
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import com.example.room.db.entities.Album
 import com.example.room.db.entities.Singer
 import com.example.room.db.entities.Song
@@ -21,10 +22,13 @@ class MainActivity : AppCompatActivity() {
 //        val song2 = createSong2(album1Id)
 //        songDao.insertAll(song1, song2)
 
-        val songWithAlbumNameList =  songDao.getSongWithAlbumNameList()
+//        val songWithAlbumNameList =  songDao.getSongWithAlbumNameList()
 //        val albumWithSongsList = albumDao.getAlbumWithSongsList()
+        albumDao.getAll().observe(this, Observer { albums ->
+            Log.d("gfgfgf", "$albums")
+        })
 
-        Log.d("gfgfgf", "$songWithAlbumNameList")
+        albumDao.insert(createAlbum2())
     }
 
     private fun createAlbum1(): Album {

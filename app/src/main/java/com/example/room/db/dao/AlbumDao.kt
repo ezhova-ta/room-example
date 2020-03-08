@@ -1,5 +1,6 @@
 package com.example.room.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.room.db.entities.Album
 import com.example.room.db.entities.AlbumWithSongs
@@ -11,7 +12,7 @@ interface AlbumDao {
     fun deleteAll()
 
     @Query("SELECT * FROM Album")
-    fun getAll(): List<Album>
+    fun getAll(): LiveData<List<Album>>
 
     @Query("SELECT * FROM Album WHERE id = :id")
     fun getById(id: Long): Album
