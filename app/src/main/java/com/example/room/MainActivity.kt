@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         val albumDao = db.albumDao()
         val songDao = db.songDao()
 
-
-
         Log.d("dbDebug", "${albumDao.getAll()}")
         Log.d("dbDebug", "${songDao.getAll()}")
     }
