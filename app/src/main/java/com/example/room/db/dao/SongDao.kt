@@ -6,6 +6,9 @@ import com.example.room.db.entities.SongWithAlbumName
 
 @Dao
 interface SongDao {
+    @Query("DELETE FROM Song")
+    fun deleteAll()
+
     @Query("SELECT * FROM Song")
     fun getAll(): List<Song>
 
@@ -22,10 +25,10 @@ interface SongDao {
     @Query("SELECT * FROM Song")
     fun getSongWithAlbumNameList(): List<SongWithAlbumName>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(song: Song): Long
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg song: Song): List<Long>
 
     @Update(onConflict = OnConflictStrategy.IGNORE)

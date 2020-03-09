@@ -12,7 +12,7 @@ interface AlbumDao {
     fun deleteAll()
 
     @Query("SELECT * FROM Album")
-    fun getAll(): LiveData<List<Album>>
+    fun getAll(): List<Album>
 
     @Query("SELECT * FROM Album WHERE id = :id")
     fun getById(id: Long): Album
@@ -24,8 +24,8 @@ interface AlbumDao {
     fun getBaseAlbumsInfo(): List<BaseAlbumInfo>
 
     @Transaction
-    @Query("SELECT * FROM Album")
-    fun getAlbumWithSongsList(): List<AlbumWithSongs>
+    @Query("SELECT * FROM Album WHERE id = :id")
+    fun getAlbumWithSongs(id: Long): AlbumWithSongs
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(album: Album): Long
@@ -33,7 +33,7 @@ interface AlbumDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg albums: Album): List<Long>
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(album: Album)
 
     @Delete

@@ -24,11 +24,20 @@ class MainActivity : AppCompatActivity() {
 
 //        val songWithAlbumNameList =  songDao.getSongWithAlbumNameList()
 //        val albumWithSongsList = albumDao.getAlbumWithSongsList()
-        albumDao.getAll().observe(this, Observer { albums ->
-            Log.d("gfgfgf", "$albums")
-        })
 
-        albumDao.insert(createAlbum2())
+//        albumDao.getAll().observe(this, Observer { albums ->
+//            Log.d("gfgfgf", "$albums")
+//        })
+
+//        val album1Id = albumDao.insert(createAlbum1())
+        val albumId = albumDao.getAll().first().id ?: return
+        val insertedSongId = songDao.insert(createSong1(albumId))
+
+        Log.d("gfgfgf", "$insertedSongId")
+        Log.d("gfgfgf", "${albumDao.getAll()}")
+        Log.d("gfgfgf", "${songDao.getAll()}")
+
+//        albumDao.insert(createAlbum2())
     }
 
     private fun createAlbum1(): Album {

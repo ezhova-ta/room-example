@@ -1,9 +1,6 @@
 package com.example.room.db.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.example.room.db.entities.Singer
 
 @Entity
