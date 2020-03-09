@@ -3,10 +3,10 @@ package com.example.room
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Observer
 import com.example.room.db.entities.Album
 import com.example.room.db.entities.Singer
 import com.example.room.db.entities.Song
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,27 +17,10 @@ class MainActivity : AppCompatActivity() {
         val albumDao = db.albumDao()
         val songDao = db.songDao()
 
-//        val album1Id = albumDao.insert(createAlbum1())
-//        val song1 = createSong1(album1Id)
-//        val song2 = createSong2(album1Id)
-//        songDao.insertAll(song1, song2)
 
-//        val songWithAlbumNameList =  songDao.getSongWithAlbumNameList()
-//        val albumWithSongsList = albumDao.getAlbumWithSongsList()
 
-//        albumDao.getAll().observe(this, Observer { albums ->
-//            Log.d("gfgfgf", "$albums")
-//        })
-
-//        val album1Id = albumDao.insert(createAlbum1())
-        val albumId = albumDao.getAll().first().id ?: return
-        val insertedSongId = songDao.insert(createSong1(albumId))
-
-        Log.d("gfgfgf", "$insertedSongId")
-        Log.d("gfgfgf", "${albumDao.getAll()}")
-        Log.d("gfgfgf", "${songDao.getAll()}")
-
-//        albumDao.insert(createAlbum2())
+        Log.d("dbDebug", "${albumDao.getAll()}")
+        Log.d("dbDebug", "${songDao.getAll()}")
     }
 
     private fun createAlbum1(): Album {
@@ -47,7 +30,8 @@ class MainActivity : AppCompatActivity() {
             genre = "Rock",
             rating = 9,
             singer = Singer("Singer1 first name", "Singer1 surname"),
-            url = "https://www.apple.com/apple-music/2125/"
+            url = "https://www.apple.com/apple-music/2125/",
+            publicationDate = Date()
         )
     }
 
@@ -58,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             genre = "Pop",
             rating = 9,
             singer = Singer("Singer2 first name", "Singer2 surname"),
-            url = "https://www.apple.com/apple-music/47852/"
+            url = "https://www.apple.com/apple-music/47852/",
+            publicationDate = Date()
         )
     }
 

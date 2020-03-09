@@ -2,6 +2,7 @@ package com.example.room.db.entities
 
 import androidx.room.*
 import com.example.room.db.entities.Singer
+import java.util.*
 
 @Entity
 data class Album(
@@ -11,5 +12,6 @@ data class Album(
     @ColumnInfo val genre: String,
     @ColumnInfo val rating: Int,
     @Embedded val singer: Singer,
-    @ColumnInfo val url: String?
+    @ColumnInfo val url: String?,
+    @ColumnInfo val publicationDate: Date?
 )

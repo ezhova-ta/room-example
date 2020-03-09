@@ -16,5 +16,5 @@ data class Song(
     @PrimaryKey(autoGenerate = true) var id: Long? = null,
     @ColumnInfo val name: String,
     @ColumnInfo val durationInSeconds: Long,
-    @ColumnInfo var albumId: Long
+    @ColumnInfo(index = true) var albumId: Long
 )
