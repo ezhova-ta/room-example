@@ -37,20 +37,16 @@ class App : Application() {
     }
 
     private fun assignValueToDbInstance() {
-        val dbBuilder = getDbBuilder()
+        val dbBuilder = Room.databaseBuilder(
+            applicationContext,
+            DB::class.java,
+            DATABASE_NAME
+        )
 
         dbBuilder.addMigrations(MIGRATION_1_2, MIGRATION_2_3)
 
         db = dbBuilder
             .allowMainThreadQueries()
             .build()
-    }
-
-    private fun getDbBuilder(): RoomDatabase.Builder<DB> {
-        return Room.databaseBuilder(
-            applicationContext,
-            DB::class.java,
-            DATABASE_NAME
-        )
     }
 }
