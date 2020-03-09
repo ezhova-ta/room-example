@@ -19,6 +19,12 @@ class App : Application() {
                 database.execSQL("ALTER TABLE Album ADD COLUMN url TEXT")
             }
         }
+
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE Album ADD COLUMN publicationDate INTEGER")
+            }
+        }
     }
 
     lateinit var db: DB
@@ -33,7 +39,7 @@ class App : Application() {
     private fun assignValueToDbInstance() {
         val dbBuilder = getDbBuilder()
 
-        dbBuilder.addMigrations(MIGRATION_1_2)
+        dbBuilder.addMigrations(MIGRATION_1_2, MIGRATION_2_3)
 
         db = dbBuilder
             .allowMainThreadQueries()
